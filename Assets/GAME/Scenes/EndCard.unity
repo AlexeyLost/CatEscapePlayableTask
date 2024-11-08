@@ -244,6 +244,7 @@ MonoBehaviour:
   _uiService: {fileID: 1980855415}
   _firstScreenToShow: 3
   _gameMode: 1
+  _playablePlayTime: 15
 --- !u!114 &214412250
 MonoBehaviour:
   m_ObjectHideFlags: 0

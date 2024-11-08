@@ -41,6 +41,16 @@ namespace GAME.Scripts.Level
             _playerController?.AllowGameplay();
         }
 
+        public void StopGame()
+        {
+            _playerController.DisableMovement();
+            
+            foreach (GuardController guard in _guards)
+            {
+                guard.StopBehaviour();
+            }
+        }
+
         private void SpawnPlayer(PlayerView playerViewPrefab)
         {
             _playerController = new PlayerController(ServiceLocator.Instance.GetService<PlayerInputService>());

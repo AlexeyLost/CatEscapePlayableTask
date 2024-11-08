@@ -1,3 +1,4 @@
+using System.Collections;
 using GAME.Scripts.Core.Services;
 using GAME.Scripts.Events;
 using GAME.Scripts.Level;
@@ -17,12 +18,15 @@ namespace GAME.Scripts.Core
         [SerializeField] private UIService _uiService;
         [SerializeField] private ScreenType _firstScreenToShow;
         [SerializeField] private GameMode _gameMode;
+        [SerializeField] private float _playablePlayTime;
         
         private LevelController _levelController;
+        private bool _gameCompleted;
         
         
         private void Start()
         {
+            _gameCompleted = false;
             InitializeServices();
             SpawnLevel();
             
@@ -33,6 +37,11 @@ namespace GAME.Scripts.Core
                 Subscribe<ExitLevelSignal>(OnExitLevelSignalReceived);
             
             _levelController.StartGame();
+            
+            if (_gameMode == GameMode.Playable)
+            {
+                StartCoroutine(CompleteGameplayAfterDelay(_playablePlayTime));
+            }
         }
 
         private void OnDisable()
@@ -63,6 +72,9 @@ namespace GAME.Scripts.Core
 
         private void OnGameOver(bool win)
         {
+            if (_gameCompleted) return;
+
+            _gameCompleted = true;
             _levelController.GameOver -= OnGameOver;
             _uiService.ShowScreen(ScreenType.GameComplete);
         }
@@ -74,7 +86,23 @@ namespace GAME.Scripts.Core
 
         private void OnExitLevelSignalReceived(ExitLevelSignal signal)
         {
+            if (_gameCompleted) return;
+
+            _gameCompleted = true;
             _uiService.ShowScreen(ScreenType.GameComplete);
+        }
+
+        private IEnumerator CompleteGameplayAfterDelay(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+
+            if (!_gameCompleted)
+            {
+                _gameCompleted = true;
+                _levelController.StopGame();
+                _uiService.HideScreen(ScreenType.Tutorial);
+                _uiService.ShowScreen(ScreenType.GameComplete);
+            }
         }
     }
 }

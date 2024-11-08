@@ -30,6 +30,12 @@ namespace GAME.Scripts.Guards
             if (_guardBehaviourData.UsePlayerDetector) CreatePlayerDetector();
         }
 
+        public void StopBehaviour()
+        {
+            _playerDetectorController.StopDetection();
+            _stateController.SetState(GuardStateType.Idle);
+        }
+
         public void Update(float deltaTime)
         {
             _stateController.Update(deltaTime);

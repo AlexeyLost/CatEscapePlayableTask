@@ -26,7 +26,6 @@ namespace GAME.Scripts.UI
 
         private void OnPlayButtonClicked()
         {
-            _playeButton.interactable = false;
             PlayButtonClicked?.Invoke();
         }
     }
