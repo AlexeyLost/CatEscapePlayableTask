@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d755748312784b3ebef2691ceecea85b, type: 3}
+  m_Name: PrefabsDataPlayableAd
+  m_EditorClassIdentifier: 
+  <LevelViewPrefab>k__BackingField: {fileID: 6193694595737032138, guid: 9917656981aa14846809dea528c64b9b, type: 3}
+  <PlayerViewPrefab>k__BackingField: {fileID: 4372975374627935491, guid: 6fab41847d37b48d4b240066bcca6256, type: 3}
+  <GuardViewPrefab>k__BackingField: {fileID: 5752787025235954002, guid: deb299dc39f6f4dc5b7fd56e9b8e40fc, type: 3}
